@@ -355,6 +355,37 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "POS.Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.13",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.13",
+          "Pomelo.EntityFrameworkCore.MySql": "6.0.2"
+        },
+        "compile": {
+          "bin/placeholder/POS.Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/POS.Repository.dll": {}
+        }
+      },
+      "POS.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.13",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.13",
+          "POS.Repository": "1.0.0",
+          "Pomelo.EntityFrameworkCore.MySql": "6.0.2"
+        },
+        "compile": {
+          "bin/placeholder/POS.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/POS.Service.dll": {}
+        }
       }
     }
   },
@@ -813,6 +844,16 @@
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "POS.Repository/1.0.0": {
+      "type": "project",
+      "path": "../POS.DataContext/POS.Repository.csproj",
+      "msbuildProject": "../POS.DataContext/POS.Repository.csproj"
+    },
+    "POS.Service/1.0.0": {
+      "type": "project",
+      "path": "../POS.Service/POS.Service.csproj",
+      "msbuildProject": "../POS.Service/POS.Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -820,6 +861,8 @@
       "Microsoft.EntityFrameworkCore >= 6.0.13",
       "Microsoft.EntityFrameworkCore.Relational >= 6.0.13",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.13",
+      "POS.Repository >= 1.0.0",
+      "POS.Service >= 1.0.0",
       "Pomelo.EntityFrameworkCore.MySql >= 6.0.2"
     ]
   },
@@ -849,7 +892,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Codes\\belajar dotnet\\pos-app\\POS\\POS.DataContext\\POS.Repository.csproj": {
+              "projectPath": "E:\\Codes\\belajar dotnet\\pos-app\\POS\\POS.DataContext\\POS.Repository.csproj"
+            },
+            "E:\\Codes\\belajar dotnet\\pos-app\\POS\\POS.Service\\POS.Service.csproj": {
+              "projectPath": "E:\\Codes\\belajar dotnet\\pos-app\\POS\\POS.Service\\POS.Service.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

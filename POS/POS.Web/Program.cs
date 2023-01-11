@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using POS.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<POS.Repository.AppContex>(
+builder.Services.AddDbContext<POS.Repository.ApplicationContext>(
     options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
     );
 

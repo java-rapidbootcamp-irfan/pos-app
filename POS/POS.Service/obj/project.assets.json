@@ -370,24 +370,6 @@
         "runtime": {
           "bin/placeholder/POS.Repository.dll": {}
         }
-      },
-      "POS.Web/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "6.0.13",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.13",
-          "Pomelo.EntityFrameworkCore.MySql": "6.0.2"
-        },
-        "compile": {
-          "bin/placeholder/POS.Web.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/POS.Web.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       }
     }
   },
@@ -851,11 +833,6 @@
       "type": "project",
       "path": "../POS.DataContext/POS.Repository.csproj",
       "msbuildProject": "../POS.DataContext/POS.Repository.csproj"
-    },
-    "POS.Web/1.0.0": {
-      "type": "project",
-      "path": "../POS.Web/POS.Web.csproj",
-      "msbuildProject": "../POS.Web/POS.Web.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -864,7 +841,6 @@
       "Microsoft.EntityFrameworkCore.Relational >= 6.0.13",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.13",
       "POS.Repository >= 1.0.0",
-      "POS.Web >= 1.0.0",
       "Pomelo.EntityFrameworkCore.MySql >= 6.0.2"
     ]
   },
@@ -897,9 +873,6 @@
           "projectReferences": {
             "E:\\Codes\\belajar dotnet\\pos-app\\POS\\POS.DataContext\\POS.Repository.csproj": {
               "projectPath": "E:\\Codes\\belajar dotnet\\pos-app\\POS\\POS.DataContext\\POS.Repository.csproj"
-            },
-            "E:\\Codes\\belajar dotnet\\pos-app\\POS\\POS.Web\\POS.Web.csproj": {
-              "projectPath": "E:\\Codes\\belajar dotnet\\pos-app\\POS\\POS.Web\\POS.Web.csproj"
             }
           }
         }

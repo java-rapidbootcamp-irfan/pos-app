@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\POS.DataContext\POS.Repository.csproj" />
-    <ProjectReference Include="..\POS.Web\POS.Web.csproj" />
   </ItemGroup>
 
 </Project>
