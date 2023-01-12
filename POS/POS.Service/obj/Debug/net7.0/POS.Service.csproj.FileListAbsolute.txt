@@ -15,3 +15,5 @@ E:\Codes\belajar dotnet\pos-app\POS\POS.Service\obj\Debug\net7.0\refint\POS.Serv
 E:\Codes\belajar dotnet\pos-app\POS\POS.Service\obj\Debug\net7.0\POS.Service.pdb
 E:\Codes\belajar dotnet\pos-app\POS\POS.Service\obj\Debug\net7.0\POS.Service.genruntimeconfig.cache
 E:\Codes\belajar dotnet\pos-app\POS\POS.Service\obj\Debug\net7.0\ref\POS.Service.dll
+E:\Codes\belajar dotnet\pos-app\POS\POS.Service\bin\Debug\net7.0\POS.ViewModel.dll
+E:\Codes\belajar dotnet\pos-app\POS\POS.Service\bin\Debug\net7.0\POS.ViewModel.pdb

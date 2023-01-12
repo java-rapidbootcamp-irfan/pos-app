@@ -5,15 +5,21 @@ namespace POS.Service
 {
     public class CategoryService
     {
-        private readonly ApplicationContext _context;
-        public CategoryService(ApplicationContext context)
+        private readonly AppDbContext _context;
+        public CategoryService(AppDbContext context)
         {
             _context = context;
         }
 
-        public List<CategoryEntity> GetCategories()
+        public List<CategoryEntity> Get()
         {
-            return _context.Categories.ToList();
+            return _context.categories.ToList();
+        }
+
+        public void Add(CategoryEntity category)
+        {
+            _context.categories.Add(category);
+            _context.SaveChanges();
         }
     }
 }
