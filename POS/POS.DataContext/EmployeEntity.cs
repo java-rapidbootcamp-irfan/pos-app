@@ -11,49 +11,49 @@ namespace POS.Repository
         public int EmployeId { get; set; }
 
         [Column("last_name")]
-        public String LastName { get; set; }
+        public string LastName { get; set; }
 
         [Column("first_name")]
-        public String FirstName { get; set; }
+        public string FirstName { get; set; }
 
         [Column("title")]
-        public String Title { get; set; }
+        public string Title { get; set; }
 
         [Column("title_of_courtesy")]
-        public String TitleOfCourtesy { get; set; }
+        public string TitleOfCourtesy { get; set; }
 
         [Column("birth_date")]
-        public int BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         [Column("hire_date")]
-        public int HireDate { get; set; }
+        public DateTime HireDate { get; set; }
 
         [Column("adress")]
-        public String Adress { get; set; }
+        public string Adress { get; set; }
 
         [Column("city")]
-        public String City { get; set; }
+        public string City { get; set; }
 
         [Column("region")]
-        public String Region { get; set; }
+        public string Region { get; set; }
 
         [Column("postal_code")]
-        public String PostalCode { get; set; }
+        public string PostalCode { get; set; }
 
         [Column("country")]
-        public String Country { get; set; }
+        public string Country { get; set; }
 
         [Column("home_phone")]
         public int HomePhone { get; set; }
 
         [Column("extension")]
-        public String Extension { get; set; }
+        public string Extension { get; set; }
 
         [Column("notes")]
-        public String Notes { get; set; }
+        public string Notes { get; set; }
 
         [Column("reports_to")]
-        public int Reports { get; set; }
+        public string Reports { get; set; }
 
         [Column("photo_path")]
         public string PhotoPath { get; set; }

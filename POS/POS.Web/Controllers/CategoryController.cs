@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using POS.DataContext;
 using POS.Repository;
 using POS.Service;
 using POS.ViewModel;
@@ -25,6 +24,13 @@ namespace POS.Web.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult AddModal()
+        {
+            return PartialView("_Add");
+        }
+
         [HttpPost]
         public IActionResult Save([Bind("CategoryName, Description")] CategoryModel request)
         {
@@ -36,7 +42,36 @@ namespace POS.Web.Controllers
             return View("Add", request);
 
         }
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            var category = _service.View(id);
+            return View(category);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            var category = _service.View(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult Update([Bind("Id, CategoryName, Description")] CategoryModel category)
+        {
+            if(ModelState.IsValid)
+            {
+                _service.Update(category);
+                return Redirect("Index");
+            }
+            return View("Edit", category);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            _service.Delete(id);
+            return Redirect("/Category");
+        }
     }
 }
-        
-           

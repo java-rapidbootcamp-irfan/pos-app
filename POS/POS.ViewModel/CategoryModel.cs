@@ -3,7 +3,7 @@
 
 namespace POS.ViewModel
 {
-    internal class CategoryModel
+     public class CategoryModel
     {
         public int Id { get; set; }
 
