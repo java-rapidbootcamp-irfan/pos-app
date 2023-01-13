@@ -12,13 +12,13 @@ namespace POS.Web.Controllers
         {
             _service = new SupplierService(context);
         }
-        public ActionResult Index() 
+        public IActionResult Index() 
         {
             var Data = _service.Get();
             return View(Data);
         }
         [HttpGet]
-        public ActionResult Add() 
+        public IActionResult Add() 
         {
             return View();
         }
@@ -30,7 +30,7 @@ namespace POS.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save([Bind("CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage")]SupplierModel 
+        public IActionResult Save([Bind("CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage")]SupplierModel 
             request) 
         {
             if(ModelState.IsValid) 
@@ -41,19 +41,19 @@ namespace POS.Web.Controllers
             return View("Add" , request);  
         }
         [HttpGet]
-        public ActionResult Details(int? id) 
+        public IActionResult Details(int? id) 
         {
             var supplier = _service.View(id);  
             return View(supplier);  
         }
         [HttpGet]
-        public ActionResult Edit(int? id) 
+        public IActionResult Edit(int? id) 
         {
             var supplier = _service.View(id);
             return View(supplier);  
         }
         [HttpPost]
-        public ActionResult Update([Bind("Id, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage")]
+        public IActionResult Update([Bind("Id, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage")]
         SupplierModel supplier) 
         {
             if (ModelState.IsValid) 
@@ -64,7 +64,7 @@ namespace POS.Web.Controllers
             return View("Edit", supplier);
         }
         [HttpGet]   
-        public ActionResult Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             _service.Delete(id);
             return Redirect("/Supplier");   

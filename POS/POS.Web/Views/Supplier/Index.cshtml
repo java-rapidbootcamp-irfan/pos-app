@@ -5,7 +5,7 @@
 }
 <h2>Supplier</h2>
 <div class="pt-2 pb-2">
-    <a asp-action="Add" class="btn btn-primary" role="button">Add Supplier</a>
+    <a asp-action="Add" class="btn btn-primary" role="button"id="btn-add">Add Supplier</a>
 </div>
 
 <table class="table table-responsive">
@@ -23,6 +23,7 @@
             <th>Phone</th>
             <th>Fax</th>
             <th>HomePage</th>
+            <th>Action</th>
           
         </tr>
     </thead>
@@ -42,12 +43,12 @@
                 <td>@item.Phone</td>
                 <td>@item.Fax</td>
                 <td>@item.HomePage</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>&nbsp
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">View</a>&nbsp
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
             </tr>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>&nbsp
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">View</a>&nbsp
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
-            </td>
             }
     </tbody>
 </table>
@@ -56,14 +57,31 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class=" modal-title">Modal Title</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" arial-label="Close"></button>
+                                <h5 class=" modal-title">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body"><p>Modal body text goes here.</p></div>
+                            <div class="modal-body">
+                                <p>Modal body text goes here.</p>
+                                </div>
                         </div>
                     </div>
                 </div>
 
                         @section Scripts
                         {
+                            <script type="text/javascript">
+                                $("#btn-add").on("click", function (e){
+                                    e.preventDefault();
+                                    $.ajax({
+                                        url : "AddModal",
+                                        type: "GET",
+                                        dataType:"html",
+                                        success: function (data){
+                                            $("#my-modal").find(".modal-body").html(data);
+                                            $("#my-modal").modal("show");
+                                        }
+
+                                    });
+                                });
+                            </script>
                         }
