@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Product\_Add.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.13">
@@ -20,6 +24,18 @@
     <ProjectReference Include="..\POS.DataContext\POS.Repository.csproj" />
     <ProjectReference Include="..\POS.Service\POS.Service.csproj" />
     <ProjectReference Include="..\POS.ViewModel\POS.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Product\_Add.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Product\_Add.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Product\_Add.cshtml" />
   </ItemGroup>
 
 </Project>

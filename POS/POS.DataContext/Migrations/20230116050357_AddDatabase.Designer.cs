@@ -11,7 +11,7 @@ using POS.Repository;
 namespace POS.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230112021535_AddDatabase")]
+    [Migration("20230116050357_AddDatabase")]
     partial class AddDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace POS.Repository.Migrations
                 .HasAnnotation("ProductVersion", "6.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("POS.DataContext.CategoryEntity", b =>
+            modelBuilder.Entity("POS.Repository.CategoryEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace POS.Repository.Migrations
                     b.ToTable("tbl_category");
                 });
 
-            modelBuilder.Entity("POS.Repository.CustomerEntity", b =>
+            modelBuilder.Entity("POS.Repository.CustomersEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace POS.Repository.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("longtext")
-                        .HasColumnName("adress");
+                        .HasColumnName("address");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -89,9 +89,8 @@ namespace POS.Repository.Migrations
                         .HasColumnType("int")
                         .HasColumnName("phone");
 
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasColumnType("longtext")
+                    b.Property<int>("PostalCode")
+                        .HasColumnType("int")
                         .HasColumnName("postal_code");
 
                     b.Property<string>("Region")
@@ -101,7 +100,7 @@ namespace POS.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_cutomers");
+                    b.ToTable("tbl_customers");
                 });
 
             modelBuilder.Entity("POS.Repository.EmployeEntity", b =>
@@ -116,8 +115,8 @@ namespace POS.Repository.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("adress");
 
-                    b.Property<int>("BirthDate")
-                        .HasColumnType("int")
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("birth_date");
 
                     b.Property<string>("City")
@@ -140,8 +139,8 @@ namespace POS.Repository.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("first_name");
 
-                    b.Property<int>("HireDate")
-                        .HasColumnType("int")
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("hire_date");
 
                     b.Property<int>("HomePhone")
@@ -163,9 +162,8 @@ namespace POS.Repository.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("photo_path");
 
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasColumnType("longtext")
+                    b.Property<int>("PostalCode")
+                        .HasColumnType("int")
                         .HasColumnName("postal_code");
 
                     b.Property<string>("Region")
@@ -173,8 +171,9 @@ namespace POS.Repository.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("region");
 
-                    b.Property<int>("Reports")
-                        .HasColumnType("int")
+                    b.Property<string>("Reports")
+                        .IsRequired()
+                        .HasColumnType("longtext")
                         .HasColumnName("reports_to");
 
                     b.Property<string>("Title")
@@ -199,77 +198,29 @@ namespace POS.Repository.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    b.Property<int>("CustomersId")
+                    b.Property<double>("Discount")
+                        .HasColumnType("double")
+                        .HasColumnName("discount");
+
+                    b.Property<int>("OrdersOrederId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EmployeesEmployeId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Freight")
+                    b.Property<long>("Quantity")
+                        .HasColumnType("bigint")
+                        .HasColumnName("quantity");
+
+                    b.Property<int>("UnitPrice")
                         .HasColumnType("int")
-                        .HasColumnName("freight");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("order_date");
-
-                    b.Property<int?>("OrderDetailEntityId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductEntityId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("RequiredDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("required_date");
-
-                    b.Property<string>("ShipAddress")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ship_address");
-
-                    b.Property<string>("ShipCity")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ship_city");
-
-                    b.Property<string>("ShipCountry")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ship_country");
-
-                    b.Property<string>("ShipName")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ship_name");
-
-                    b.Property<string>("ShipPostalCode")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ship_postal_code");
-
-                    b.Property<string>("ShipRegion")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ship_region");
-
-                    b.Property<int>("ShipVia")
-                        .HasColumnType("int")
-                        .HasColumnName("ship_via");
-
-                    b.Property<DateTime>("ShippedDate")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("shipped_date");
+                        .HasColumnName("unit_price");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomersId");
+                    b.HasIndex("OrdersOrederId");
 
-                    b.HasIndex("EmployeesEmployeId");
-
-                    b.HasIndex("OrderDetailEntityId");
-
-                    b.HasIndex("ProductEntityId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("tbl_order_detail");
                 });
@@ -281,15 +232,11 @@ namespace POS.Repository.Migrations
                         .HasColumnType("int")
                         .HasColumnName("order_id");
 
-                    b.Property<int?>("CustomerEntityId")
+                    b.Property<int>("CustomersId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EmployeEntityEmployeId")
+                    b.Property<int>("EmployesEmployeId")
                         .HasColumnType("int");
-
-                    b.Property<int>("EmployeId")
-                        .HasColumnType("int")
-                        .HasColumnName("employe_id");
 
                     b.Property<int>("Freight")
                         .HasColumnType("int")
@@ -323,9 +270,8 @@ namespace POS.Repository.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("ship_name");
 
-                    b.Property<string>("ShipPostalCode")
-                        .IsRequired()
-                        .HasColumnType("longtext")
+                    b.Property<int>("ShipPostalCode")
+                        .HasColumnType("int")
                         .HasColumnName("ship_postal_code");
 
                     b.Property<string>("ShipRegion")
@@ -343,9 +289,9 @@ namespace POS.Repository.Migrations
 
                     b.HasKey("OrederId");
 
-                    b.HasIndex("CustomerEntityId");
+                    b.HasIndex("CustomersId");
 
-                    b.HasIndex("EmployeEntityEmployeId");
+                    b.HasIndex("EmployesEmployeId");
 
                     b.ToTable("tbl_orders");
                 });
@@ -358,10 +304,12 @@ namespace POS.Repository.Migrations
                         .HasColumnName("id");
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("category_id");
 
-                    b.Property<bool>("Discontinued")
-                        .HasColumnType("tinyint(1)")
+                    b.Property<string>("Discontinued")
+                        .IsRequired()
+                        .HasColumnType("longtext")
                         .HasColumnName("discontinued");
 
                     b.Property<string>("ProductName")
@@ -378,7 +326,8 @@ namespace POS.Repository.Migrations
                         .HasColumnName("reorder_level");
 
                     b.Property<int>("SupplierId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("supplier_id");
 
                     b.Property<long>("UnitInStock")
                         .HasColumnType("bigint")
@@ -469,52 +418,52 @@ namespace POS.Repository.Migrations
 
             modelBuilder.Entity("POS.Repository.OrderDetailEntity", b =>
                 {
-                    b.HasOne("POS.Repository.CustomerEntity", "Customers")
-                        .WithMany()
-                        .HasForeignKey("CustomersId")
+                    b.HasOne("POS.Repository.OrdersEntity", "Orders")
+                        .WithMany("orderDetails")
+                        .HasForeignKey("OrdersOrederId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("POS.Repository.EmployeEntity", "Employees")
-                        .WithMany()
-                        .HasForeignKey("EmployeesEmployeId")
+                    b.HasOne("POS.Repository.ProductEntity", "Product")
+                        .WithMany("orderDetails")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("POS.Repository.OrderDetailEntity", null)
-                        .WithMany("orderDetailEntities")
-                        .HasForeignKey("OrderDetailEntityId");
+                    b.Navigation("Orders");
 
-                    b.HasOne("POS.Repository.ProductEntity", null)
-                        .WithMany("orderDetailEntities")
-                        .HasForeignKey("ProductEntityId");
-
-                    b.Navigation("Customers");
-
-                    b.Navigation("Employees");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("POS.Repository.OrdersEntity", b =>
                 {
-                    b.HasOne("POS.Repository.CustomerEntity", null)
-                        .WithMany("orderEntities")
-                        .HasForeignKey("CustomerEntityId");
+                    b.HasOne("POS.Repository.CustomersEntity", "Customers")
+                        .WithMany("orders")
+                        .HasForeignKey("CustomersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("POS.Repository.EmployeEntity", null)
-                        .WithMany("orderEntities")
-                        .HasForeignKey("EmployeEntityEmployeId");
+                    b.HasOne("POS.Repository.EmployeEntity", "Employes")
+                        .WithMany("orders")
+                        .HasForeignKey("EmployesEmployeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customers");
+
+                    b.Navigation("Employes");
                 });
 
             modelBuilder.Entity("POS.Repository.ProductEntity", b =>
                 {
-                    b.HasOne("POS.DataContext.CategoryEntity", "Category")
-                        .WithMany("productEntities")
+                    b.HasOne("POS.Repository.CategoryEntity", "Category")
+                        .WithMany("products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("POS.Repository.SupplierEntity", "Supplier")
-                        .WithMany("productEntities")
+                        .WithMany("products")
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -524,34 +473,34 @@ namespace POS.Repository.Migrations
                     b.Navigation("Supplier");
                 });
 
-            modelBuilder.Entity("POS.DataContext.CategoryEntity", b =>
+            modelBuilder.Entity("POS.Repository.CategoryEntity", b =>
                 {
-                    b.Navigation("productEntities");
+                    b.Navigation("products");
                 });
 
-            modelBuilder.Entity("POS.Repository.CustomerEntity", b =>
+            modelBuilder.Entity("POS.Repository.CustomersEntity", b =>
                 {
-                    b.Navigation("orderEntities");
+                    b.Navigation("orders");
                 });
 
             modelBuilder.Entity("POS.Repository.EmployeEntity", b =>
                 {
-                    b.Navigation("orderEntities");
+                    b.Navigation("orders");
                 });
 
-            modelBuilder.Entity("POS.Repository.OrderDetailEntity", b =>
+            modelBuilder.Entity("POS.Repository.OrdersEntity", b =>
                 {
-                    b.Navigation("orderDetailEntities");
+                    b.Navigation("orderDetails");
                 });
 
             modelBuilder.Entity("POS.Repository.ProductEntity", b =>
                 {
-                    b.Navigation("orderDetailEntities");
+                    b.Navigation("orderDetails");
                 });
 
             modelBuilder.Entity("POS.Repository.SupplierEntity", b =>
                 {
-                    b.Navigation("productEntities");
+                    b.Navigation("products");
                 });
 #pragma warning restore 612, 618
         }

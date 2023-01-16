@@ -7,35 +7,43 @@ namespace POS.Web.Controllers
 {
     public class CustomerController : Controller
     {
-
-        public readonly CustomerService _service;
-        public CustomerController(AppDbContext context) 
+        private readonly CustomerService _service;
+        public CustomerController(AppDbContext context)
         {
-            _service = new CustomerService(context);    
+            _service = new CustomerService(context);
         }
 
-        public IActionResult Index() 
+        [HttpGet]
+        public IActionResult Index()
         {
             var Data = _service.Get();
             return View(Data);
         }
 
         [HttpGet]
-        public IActionResult Add() 
+        public IActionResult Add()
         {
-            return View();  
+            return View();
         }
 
-        [HttpPost]  
-        public IActionResult Save([Bind("CompanyName, ContactName, ContactTitle, Address, City,Region, PostalCode, Country, Phone, Fax")]CustomerModel request) 
+        [HttpGet]
+        public IActionResult AddModal()
         {
-            if (ModelState.IsValid) 
+            return PartialView("_Add");
+        }
+
+        [HttpPost]
+        public IActionResult Save(
+            [Bind("CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax")] CustomerModel request)
+        {
+            if (ModelState.IsValid)
             {
-                _service.Add(new CustomerEntity(request));
+                _service.Add(new CustomersEntity(request));
                 return Redirect("Index");
             }
             return View("Add", request);
         }
+
         [HttpGet]
         public IActionResult Details(int? id)
         {
@@ -51,7 +59,7 @@ namespace POS.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update([Bind("Id, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax")]CustomerModel customer)
+        public IActionResult Update([Bind("Id, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax")] CustomerModel customer)
         {
             if (ModelState.IsValid)
             {
@@ -65,9 +73,9 @@ namespace POS.Web.Controllers
         public IActionResult Delete(int? id)
         {
             _service.Delete(id);
-            return Redirect("/customer");
+            return Redirect("/Customer");
         }
     }
 }
-    
+
 

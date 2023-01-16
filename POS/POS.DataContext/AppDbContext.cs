@@ -10,7 +10,7 @@ namespace POS.Repository
 
         public DbSet<ProductEntity> products => Set<ProductEntity>();
         public DbSet<CategoryEntity> categories => Set<CategoryEntity>();
-        public DbSet<CustomerEntity> customers => Set<CustomerEntity>();
+        public DbSet<CustomersEntity> customers => Set<CustomersEntity>();
         public DbSet<EmployeEntity> employes => Set<EmployeEntity>();
         public DbSet<OrderDetailEntity> orderDetails => Set<OrderDetailEntity>();
         public DbSet<OrdersEntity> orders => Set<OrdersEntity>();

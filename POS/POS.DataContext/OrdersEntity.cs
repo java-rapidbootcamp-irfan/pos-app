@@ -10,8 +10,9 @@ namespace POS.Repository
         [Column("order_id")]
         public int OrederId { get; set; }
 
-        [Column("employe_id")]
-        public int EmployeId { get; set; }
+        public CustomersEntity Customers { get; set; }
+
+        public EmployeEntity Employes { get; set; }
 
         [Column("order_date")]
         public DateTime OrderDate { get; set; }
@@ -29,22 +30,24 @@ namespace POS.Repository
         public int Freight { get; set; }
 
         [Column("ship_name")]
-        public String ShipName { get; set; }
+        public string ShipName { get; set; }
 
         [Column("ship_adress")]
-        public String ShipAddress { get; set; }
+        public string ShipAddress { get; set; }
 
         [Column("ship_city")]
-        public String ShipCity { get; set; }
+        public string ShipCity { get; set; }
 
         [Column("ship_region")]
-        public String ShipRegion { get; set; }
+        public string ShipRegion { get; set; }
 
         [Column("ship_postal_code")]
-        public String ShipPostalCode { get; set;}
+        public int ShipPostalCode { get; set;}
 
         [Column("ship_country")]
-        public String ShipCountry { get; set; }
+        public string ShipCountry { get; set; }
+
+        public ICollection<OrderDetailEntity> orderDetails { get; set; }
 
     }
 }

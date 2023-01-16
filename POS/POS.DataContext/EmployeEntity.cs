@@ -38,7 +38,7 @@ namespace POS.Repository
         public string Region { get; set; }
 
         [Column("postal_code")]
-        public string PostalCode { get; set; }
+        public int PostalCode { get; set; }
 
         [Column("country")]
         public string Country { get; set; }
@@ -58,6 +58,6 @@ namespace POS.Repository
         [Column("photo_path")]
         public string PhotoPath { get; set; }
 
-        public ICollection<OrdersEntity> orderEntities { get; set; }
+        public ICollection<OrdersEntity> orders { get; set; }
     }
 }

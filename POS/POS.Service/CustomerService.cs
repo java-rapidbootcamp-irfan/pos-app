@@ -12,7 +12,7 @@ namespace POS.Service
     public class CustomerService
     {
         private readonly AppDbContext _context;
-        private CustomerModel EntityToModel(CustomerEntity entity)
+        private CustomerModel EntityToModel(CustomersEntity entity)
         {
             CustomerModel result = new CustomerModel();
             result.Id = entity.Id;
@@ -30,7 +30,7 @@ namespace POS.Service
             return result;
         }
 
-        private void ModelToEntity(CustomerModel model, CustomerEntity entity)
+        private void ModelToEntity(CustomerModel model, CustomersEntity entity)
         {
             entity.CompanyName= model.CompanyName;
             entity.ContactName= model.ContactName;
@@ -43,42 +43,44 @@ namespace POS.Service
             entity.Phone= model.Phone;
             entity.Fax= model.Fax;
         }
-       
+
         public CustomerService(AppDbContext context)
         {
-            _context=context;
+            _context = context;
         }
 
-        public List<CustomerEntity> Get() 
+        public List<CustomersEntity> Get()
         {
-            return _context.customers.ToList(); 
+            return _context.customers.ToList();
         }
 
-        public void Add(CustomerEntity customer)
+        public void Add(CustomersEntity customers)
         {
-            _context.customers.Add(customer);
+            _context.customers.Add(customers);
             _context.SaveChanges();
         }
-        public CustomerModel View(int? id) 
+
+        public CustomerModel View(int? id)
         {
             var customer = _context.customers.Find(id);
             return EntityToModel(customer);
         }
 
-        public void Update(CustomerModel customer) 
+        public void Update(CustomerModel customers)
         {
-            var entity = _context.customers.Find(customer.Id);
-            ModelToEntity(customer, entity);
+            var entity = _context.customers.Find(customers.Id);
+            ModelToEntity(customers, entity);
             _context.customers.Update(entity);
             _context.SaveChanges();
         }
-        public void Delete(int? id) 
-        {
-            var customer = View(id);
 
+        public void Delete(int? id)
+        {
             var entity = _context.customers.Find(id);
             _context.customers.Remove(entity);
             _context.SaveChanges();
         }
+
+
     }
 }

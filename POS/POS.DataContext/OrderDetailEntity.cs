@@ -10,44 +10,20 @@ namespace POS.Repository
         [Column("id")]
         public int Id { get; set; }
 
-        public CustomerEntity Customers { get; set; }
-       
-        public EmployeEntity Employees { get; set; }
+        [Column("order_id")]
+        public OrdersEntity Orders { get; set; }
 
-        [Column("order_date")]
-        public DateTime OrderDate { get; set; }
+        [Column("product_id")]
+        public ProductEntity Product { get; set; }
 
-        [Column("required_date")]
-        public DateTime RequiredDate { get; set; }
+        [Column("unit_price")]
+        public int UnitPrice { get; set; }
 
-        [Column("shipped_date")]
-        public DateTime ShippedDate { get; set; }
+        [Column("quantity")]
+        public long Quantity { get; set; }
 
-        [Column("ship_via")]
-        public int ShipVia { get; set; }
-
-        [Column("freight")]
-        public int Freight { get; set; }
-
-        [Column("ship_name")]
-        public string ShipName { get; set; }
-
-        [Column("ship_address")]
-        public string ShipAddress { get; set; }
-
-        [Column("ship_city")]
-        public string ShipCity { get; set; }
-
-        [Column("ship_region")]
-        public string ShipRegion { get; set; }
-
-        [Column("ship_postal_code")]
-        public string ShipPostalCode { get; set; }
-
-        [Column("ship_country")]
-        public string ShipCountry { get; set; }
-
-        public ICollection<OrderDetailEntity> orderDetailEntities { get; set; }
+        [Column("discount")]
+        public Double Discount { get; set; }
 
     }
 }
