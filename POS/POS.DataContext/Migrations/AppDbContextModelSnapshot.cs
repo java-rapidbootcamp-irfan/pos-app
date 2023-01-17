@@ -305,9 +305,8 @@ namespace POS.Repository.Migrations
                         .HasColumnType("int")
                         .HasColumnName("category_id");
 
-                    b.Property<string>("Discontinued")
-                        .IsRequired()
-                        .HasColumnType("longtext")
+                    b.Property<bool>("Discontinued")
+                        .HasColumnType("tinyint(1)")
                         .HasColumnName("discontinued");
 
                     b.Property<string>("ProductName")
@@ -315,8 +314,9 @@ namespace POS.Repository.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("product_name");
 
-                    b.Property<long>("QuantityPerUnit")
-                        .HasColumnType("bigint")
+                    b.Property<string>("QuantityPerUnit")
+                        .IsRequired()
+                        .HasColumnType("longtext")
                         .HasColumnName("quantity_per_unit");
 
                     b.Property<long>("ReorderLevel")

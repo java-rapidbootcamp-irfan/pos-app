@@ -17,7 +17,7 @@ namespace POS.Repository
 
         [Column("supplier_id")]
         public int SupplierId { get; set; }
-       
+
         [Required]
         public SupplierEntity Supplier { get; set; }
 
@@ -28,7 +28,7 @@ namespace POS.Repository
 
         [Required]
         [Column("quantity_per_unit")]
-        public long QuantityPerUnit { get; set; }
+        public string QuantityPerUnit { get; set; }
 
         [Required]
         [Column("unit_price")]
@@ -48,20 +48,21 @@ namespace POS.Repository
 
         [Required]
         [Column("discontinued")]
-        public string Discontinued { get; set; }
+        public bool Discontinued { get; set; }
 
         public ICollection<OrderDetailEntity> orderDetails { get; set; }
 
         public ProductEntity(POS.ViewModel.ProductModel model)
         {
-            ProductName= model.ProductName;
-            SupplierId= model.SupplierId;
-            CategoryId= model.CategoryId;
+            ProductName = model.ProductName;
+            SupplierId = model.SupplierId;
+            CategoryId = model.CategoryId;
+            QuantityPerUnit = model.QuantityPerUnit;
             UnitPrice = model.UnitPrice;
-            UnitInStock= model.UnitInStock;
-            UnitOnOrder= model.UnitOnOrder;
-            ReorderLevel= model.ReorderLevel;
-            Discontinued= model.Discontinued;
+            UnitInStock = model.UnitInStock;
+            UnitOnOrder = model.UnitOnOrder;
+            ReorderLevel = model.ReorderLevel;
+            Discontinued = model.Discontinued;
 
         }
 
