@@ -3,7 +3,7 @@
 
 <form asp-controller="Orders" asp-action="Save" method="post">
     <div class="form-group">
-        <label asp-for="CustomersId">Supplier</label>
+        <label asp-for="CustomersId">Customer</label>
         <select asp-for="CustomersId" class="form-control">
             <option>Pilih Customer</option>
             <option value="1">Customer 1</option>
@@ -12,12 +12,12 @@
         <span asp-validation-for="CustomersId" class="text-danger" />
     </div>
     <div class="form-group">
-        <label asp-for="EmployeId">Category</label>
+        <label asp-for="EmployeId">Employe</label>
         <select asp-for="EmployeId" class="form-control">
-            <option>Pilih Employee</option>
-            <option value="1">Employee 1</option>
-            <option value="2">Employee 2</option>
-            <option value="3">Employee 3</option>
+            <option>Pilih Employe</option>
+            <option value="1">Employe 1</option>
+            <option value="2">Employe 2</option>
+            <option value="3">Employe 3</option>
         </select>
         <span asp-validation-for="EmployeId" class="text-danger" />
     </div>
@@ -77,8 +77,8 @@
         <span asp-validation-for="ShipCountry" class="text-danger" />
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-outline-primary">Save changes</button>
     </div>
 </form>
 
