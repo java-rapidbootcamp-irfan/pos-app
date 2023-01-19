@@ -14,11 +14,11 @@ namespace POS.Repository
 
             [Required]
             [Column("category_name")]
-            public String CategoryName { get; set; }
+            public string CategoryName { get; set; }
 
             [Required]
             [Column("description")]
-            public String Description { get; set; }
+            public string Description { get; set; }
 
             public ICollection<ProductEntity> products { get; set; }
             public CategoryEntity(POS.ViewModel.CategoryModel model)

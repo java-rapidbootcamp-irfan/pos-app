@@ -36,15 +36,15 @@ namespace POS.Repository
 
         [Required]
         [Column("unit_in_stock")]
-        public long UnitInStock { get; set; }
+        public int UnitInStock { get; set; }
 
         [Required]
         [Column("unit_on_order")]
-        public long UnitOnOrder { get; set; }
+        public int UnitOnOrder { get; set; }
 
         [Required]
         [Column("reorder_level")]
-        public long ReorderLevel { get; set; }
+        public int ReorderLevel { get; set; }
 
         [Required]
         [Column("discontinued")]

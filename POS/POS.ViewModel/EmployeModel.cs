@@ -39,19 +39,22 @@ namespace POS.ViewModel
         public string Region { get; set; }
 
         [Required]  
-        public string PostalCode { get; set; }
+        public int PostalCode { get; set; }
 
         [Required]  
         public string Country { get; set; }
 
         [Required]  
-        public string HomePhone { get; set; }
+        public int HomePhone { get; set; }
 
         [Required]  
         public string Extension { get; set; }
 
         [Required]  
         public string Notes { get; set; }
+
+        [Required]
+        public string ReportsTo { get; set; }
 
         [Required]  
         public string PhotoPath { get; set; }

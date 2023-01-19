@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Cryptography.X509Certificates;
 
 namespace POS.Repository
 {
@@ -7,8 +8,8 @@ namespace POS.Repository
     public class EmployeEntity
     {
         [Key]
-        [Column("employe_id")]
-        public int EmployeId { get; set; }
+        [Column("id")]
+        public int Id { get; set; }
 
         [Column("last_name")]
         public string LastName { get; set; }
@@ -29,7 +30,7 @@ namespace POS.Repository
         public DateTime HireDate { get; set; }
 
         [Column("adress")]
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         [Column("city")]
         public string City { get; set; }
@@ -53,11 +54,36 @@ namespace POS.Repository
         public string Notes { get; set; }
 
         [Column("reports_to")]
-        public string Reports { get; set; }
+        public string ReportsTo { get; set; }
 
         [Column("photo_path")]
         public string PhotoPath { get; set; }
 
         public ICollection<OrdersEntity> orders { get; set; }
+
+        public EmployeEntity (POS.ViewModel.EmployeModel model) 
+        {
+            LastName = model.LastName;  
+            FirstName= model.FirstName; 
+            Title= model.Title; 
+            TitleOfCourtesy= model.TitleOfCourtesy; 
+            BirthDate= model.BirthDate; 
+            HireDate= model.HireDate;
+            Address= model.Address;
+            City= model.City;   
+            Region= model.Region;
+            PostalCode= model.PostalCode;
+            Country= model.Country;
+            HomePhone= model.HomePhone;
+            Extension= model.Extension; 
+            Notes= model.Notes;
+            ReportsTo= model.ReportsTo;
+            PhotoPath= model.PhotoPath; 
+
+        }
+        public EmployeEntity() 
+        {
+
+        }
     }
 }

@@ -11,7 +11,7 @@ using POS.Repository;
 namespace POS.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230116152015_AddDatabase")]
+    [Migration("20230118065545_AddDatabase")]
     partial class AddDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,12 +105,12 @@ namespace POS.Repository.Migrations
 
             modelBuilder.Entity("POS.Repository.EmployeEntity", b =>
                 {
-                    b.Property<int>("EmployeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("employe_id");
+                        .HasColumnName("id");
 
-                    b.Property<string>("Adress")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("adress");
@@ -171,7 +171,7 @@ namespace POS.Repository.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("region");
 
-                    b.Property<string>("Reports")
+                    b.Property<string>("ReportsTo")
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("reports_to");
@@ -186,7 +186,7 @@ namespace POS.Repository.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("title_of_courtesy");
 
-                    b.HasKey("EmployeId");
+                    b.HasKey("Id");
 
                     b.ToTable("tbl_employe");
                 });
@@ -202,23 +202,25 @@ namespace POS.Repository.Migrations
                         .HasColumnType("double")
                         .HasColumnName("discount");
 
-                    b.Property<int>("OrdersOrederId")
-                        .HasColumnType("int");
+                    b.Property<int>("OrdersId")
+                        .HasColumnType("int")
+                        .HasColumnName("order_id");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("product_id");
 
-                    b.Property<long>("Quantity")
-                        .HasColumnType("bigint")
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int")
                         .HasColumnName("quantity");
 
-                    b.Property<int>("UnitPrice")
-                        .HasColumnType("int")
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("double")
                         .HasColumnName("unit_price");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrdersOrederId");
+                    b.HasIndex("OrdersId");
 
                     b.HasIndex("ProductId");
 
@@ -227,16 +229,18 @@ namespace POS.Repository.Migrations
 
             modelBuilder.Entity("POS.Repository.OrdersEntity", b =>
                 {
-                    b.Property<int>("OrederId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("order_id");
+                        .HasColumnName("id");
 
                     b.Property<int>("CustomersId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("customer_id");
 
-                    b.Property<int>("EmployesEmployeId")
-                        .HasColumnType("int");
+                    b.Property<int>("EmployeId")
+                        .HasColumnType("int")
+                        .HasColumnName("employe_id");
 
                     b.Property<int>("Freight")
                         .HasColumnType("int")
@@ -246,14 +250,14 @@ namespace POS.Repository.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("order_date");
 
-                    b.Property<DateTime>("RequireDate")
+                    b.Property<DateTime>("RequiredDate")
                         .HasColumnType("datetime(6)")
                         .HasColumnName("required_date");
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
                         .HasColumnType("longtext")
-                        .HasColumnName("ship_adress");
+                        .HasColumnName("ship_address");
 
                     b.Property<string>("ShipCity")
                         .IsRequired()
@@ -270,8 +274,9 @@ namespace POS.Repository.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("ship_name");
 
-                    b.Property<int>("ShipPostalCode")
-                        .HasColumnType("int")
+                    b.Property<string>("ShipPostalCode")
+                        .IsRequired()
+                        .HasColumnType("longtext")
                         .HasColumnName("ship_postal_code");
 
                     b.Property<string>("ShipRegion")
@@ -287,11 +292,11 @@ namespace POS.Repository.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("shipped_date");
 
-                    b.HasKey("OrederId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CustomersId");
 
-                    b.HasIndex("EmployesEmployeId");
+                    b.HasIndex("EmployeId");
 
                     b.ToTable("tbl_orders");
                 });
@@ -321,20 +326,20 @@ namespace POS.Repository.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("quantity_per_unit");
 
-                    b.Property<long>("ReorderLevel")
-                        .HasColumnType("bigint")
+                    b.Property<int>("ReorderLevel")
+                        .HasColumnType("int")
                         .HasColumnName("reorder_level");
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("int")
                         .HasColumnName("supplier_id");
 
-                    b.Property<long>("UnitInStock")
-                        .HasColumnType("bigint")
+                    b.Property<int>("UnitInStock")
+                        .HasColumnType("int")
                         .HasColumnName("unit_in_stock");
 
-                    b.Property<long>("UnitOnOrder")
-                        .HasColumnType("bigint")
+                    b.Property<int>("UnitOnOrder")
+                        .HasColumnType("int")
                         .HasColumnName("unit_on_order");
 
                     b.Property<double>("UnitPrice")
@@ -420,7 +425,7 @@ namespace POS.Repository.Migrations
                 {
                     b.HasOne("POS.Repository.OrdersEntity", "Orders")
                         .WithMany("orderDetails")
-                        .HasForeignKey("OrdersOrederId")
+                        .HasForeignKey("OrdersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -443,15 +448,15 @@ namespace POS.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("POS.Repository.EmployeEntity", "Employes")
+                    b.HasOne("POS.Repository.EmployeEntity", "Employe")
                         .WithMany("orders")
-                        .HasForeignKey("EmployesEmployeId")
+                        .HasForeignKey("EmployeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customers");
 
-                    b.Navigation("Employes");
+                    b.Navigation("Employe");
                 });
 
             modelBuilder.Entity("POS.Repository.ProductEntity", b =>

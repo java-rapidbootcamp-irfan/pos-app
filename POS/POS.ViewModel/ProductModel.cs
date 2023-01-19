@@ -27,13 +27,13 @@ namespace POS.ViewModel
         public double UnitPrice { get; set; }
 
         [Required]
-        public long UnitInStock { get; set; }
+        public int UnitInStock { get; set; }
 
         [Required]
-        public long UnitOnOrder { get; set; }
+        public int UnitOnOrder { get; set; }
 
         [Required]
-        public long ReorderLevel { get; set; }
+        public int ReorderLevel { get; set; }
 
         [Required]
         public bool Discontinued { get; set; }
