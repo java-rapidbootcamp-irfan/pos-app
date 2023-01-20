@@ -49,5 +49,7 @@ namespace POS.ViewModel
 
         [Required]
         public string ShipCountry { get; set; }
+
+        public List<OrderDetailModel> OrderDetails { get; set; }
     }
 }

@@ -422,7 +422,7 @@ namespace POS.Repository.Migrations
             modelBuilder.Entity("POS.Repository.OrderDetailEntity", b =>
                 {
                     b.HasOne("POS.Repository.OrdersEntity", "Orders")
-                        .WithMany("orderDetails")
+                        .WithMany("OrderDetails")
                         .HasForeignKey("OrdersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -493,7 +493,7 @@ namespace POS.Repository.Migrations
 
             modelBuilder.Entity("POS.Repository.OrdersEntity", b =>
                 {
-                    b.Navigation("orderDetails");
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("POS.Repository.ProductEntity", b =>

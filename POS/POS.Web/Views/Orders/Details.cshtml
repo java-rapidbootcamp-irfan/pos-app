@@ -1,10 +1,10 @@
-﻿@model POS.Repository.OrdersEntity
-
+﻿@model POS.ViewModel.OrdersModel
 @{
-    ViewData["Title"] = "Orders Detail";
+    ViewBag.Title = "Order Detail";
+    Layout = "_Layout";
 }
 
-<h2>Orders Detail</h2>
+<h2>Detail</h2>
 <table class="table tab-content">
     <tbody>
         <tr>
@@ -12,11 +12,11 @@
             <td>@Model.Id</td>
         </tr>
         <tr>
-            <th>Customer</th>
+            <th>Customer ID</th>
             <td>@Model.CustomersId</td>
         </tr>
         <tr>
-            <th>Employee</th>
+            <th>Employee ID</th>
             <td>@Model.EmployeId</td>
         </tr>
         <tr>
@@ -30,10 +30,6 @@
         <tr>
             <th>Shipped Date</th>
             <td>@Model.ShippedDate</td>
-        </tr>
-        <tr>
-            <th>Ship Via</th>
-            <td>@Model.ShipVia</td>
         </tr>
         <tr>
             <th>Freight</th>
@@ -66,3 +62,27 @@
 
     </tbody>
 </table>
+<h4>Order Detail </h4>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Discount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderDetails)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.Quantity</td>
+                <td>@item.Discount</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<a asp-action="Index" class="btn btn-sm btn-success">Back</a>
