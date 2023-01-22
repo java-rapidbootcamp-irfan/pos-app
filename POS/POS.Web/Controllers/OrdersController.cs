@@ -24,7 +24,7 @@ namespace POS.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var orders = _orderService.GetOrders();
+            var orders = _orderService.Get();
             return View(orders);
         }
 
@@ -40,22 +40,16 @@ namespace POS.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Save(
-            [Bind("CustomerId, EmployeId, OrderDate, RequiredDate, ShippedDate, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry, OrderDetails")] OrdersModel request)
+            [Bind("CustomersId, EmployeId, OrderDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry, OrderDetails")] OrdersModel request)
         {
             if (ModelState.IsValid)
             {
-                _orderService.CreateOrder(request);
+                _orderService.Add(request);
                 return Redirect("Index");
             }
             return View("Add", request);
         }
 
-        /*[HttpGet]
-        public IActionResult Details(int? id)
-        {
-            var order = _orderService.ReadOrder(id);
-            return View(order);
-        }*/
         [HttpGet]
         public IActionResult Detail(int? id)
         {
@@ -69,18 +63,18 @@ namespace POS.Web.Controllers
             ViewBag.Customer = new SelectList(_customerService.Get(), "Id", "Name");
             ViewBag.Employee = new SelectList(_employeService.Get(), "Id", "LastName");
             ViewBag.Product = new SelectList(_productService.Get(), "Id", "ProductName");
-            var order = _orderService.ReadOrder(id);
+            var order = _orderService.View(id);
 
             return View(order);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update([Bind("Id, CustomerId, EmployeId, OrderDate, RequiredDate, ShippedDate, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry, OrderDetails")] OrdersModel request)
+        public IActionResult Update([Bind("Id, CustomersId, EmployeId, OrderDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry, OrderDetails")] OrdersModel request)
         {
             if (ModelState.IsValid)
             {
-                _orderService.UpdateOrder(request);
+                _orderService.Update(request);
                 return Redirect("Index");
             }
             return View("Edit", request);
@@ -89,7 +83,7 @@ namespace POS.Web.Controllers
         [HttpGet]
         public IActionResult Delete(int? id)
         {
-            _orderService.DeleteCategory(id);
+            _orderService.Delete(id);
             return Redirect("/Order");
         }
     }

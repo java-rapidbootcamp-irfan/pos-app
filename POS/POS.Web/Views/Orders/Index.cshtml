@@ -6,7 +6,7 @@
 
 <h2>Orders</h2>
 <div class="pt-2 pb-2">
-    <a asp-action="Add" class="btn btn-primary" role="button">Tambah Order</a>
+    <a asp-action="Add" class="btn btn-primary" role="button">Add Order</a>
 </div>
 <table class="table table-responsive">
     <thead>
@@ -38,6 +38,7 @@
                 <td>@item.OrderDate</td>
                 <td>@item.RequiredDate</td>
                 <td>@item.ShippedDate</td>
+                <td>@item.ShipVia</td>
                 <td>@item.Freight</td>
                 <td>@item.ShipName</td>
                 <td>@item.ShipAddress</td>

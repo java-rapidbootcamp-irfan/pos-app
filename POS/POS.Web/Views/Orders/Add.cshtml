@@ -7,11 +7,14 @@
 
 <h2>Form Add Order</h2>
 
-<form asp-controller="Order" asp-action="Save" method="post">
+<form asp-controller="Orders" asp-action="Save" method="post">
     <div class="form-group">
         <label asp-for="CustomersId">Customer</label>
         <select type="text" asp-for="CustomersId" class="form-control" asp-items="@ViewBag.Customers">
-            <option selected>Select Customer</option>
+            <option selected>pilih Customer</option>
+            <option value="1">Customer 1</option>
+            <option value="2">Customer 2</option>
+            <option value="3">Customer 3</option>
         </select>
         <span asp-validation-for="CustomersId" class="text-danger"></span>
     </div>
@@ -19,6 +22,9 @@
         <label asp-for="EmployeId">Employe</label>
         <select type="text" asp-for="EmployeId" class="form-control" asp-items="@ViewBag.Employe">
             <option selected>Select Employee</option>
+            <option value="1">Employe 1</option>
+            <option value="2">Employe 2</option>
+            <option value="3">Employe 3</option>
         </select>
         <span asp-validation-for="EmployeId" class="text-danger"></span>
     </div>
@@ -36,6 +42,11 @@
         <label asp-for="ShippedDate">Shipped Date</label>
         <input asp-for="ShippedDate" class="form-control" />
         <span asp-validation-for="ShippedDate" class="text-danger"></span>
+    </div>
+    <div class=" form-group">
+        <label asp-for="ShipVia">Ship Via</label>
+        <input asp-for="ShipVia" class="form-control" />
+        <span asp-validation-for="ShipVia" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Freight">Freight</label>
@@ -143,4 +154,6 @@
             }
         });
     </script>
+
 }
+

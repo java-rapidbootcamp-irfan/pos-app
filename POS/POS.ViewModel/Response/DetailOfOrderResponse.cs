@@ -19,6 +19,8 @@ namespace POS.ViewModel.Response
 
         public DateTime ShippedDate { get; set; }
 
+        public int ShipVia { get; set; } 
+
         public int Freight { get; set; }
 
         public string ShipName { get; set; }
